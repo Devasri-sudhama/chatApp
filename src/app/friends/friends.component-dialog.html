@@ -1,0 +1,6 @@
+<mat-grid-list cols="2" rowHeight="2:1">
+  <div *ngFor="let user of usersRegister">
+    <mat-grid-tile> {{user.email}}</mat-grid-tile>
+    <button mat-raised-button (click)="openDialog()">Pick one</button>
+  </div>
+</mat-grid-list>

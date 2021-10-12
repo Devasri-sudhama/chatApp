@@ -1,0 +1,52 @@
+<div class="login-wrapper" fxLayout="row" fxLayoutAlign="center center">
+  <mat-card class="box">
+    <mat-card-header>
+      <mat-card-title>Group Chat</mat-card-title>
+    </mat-card-header>
+    <!-- {{ grpChat | json }} -->
+    <div *ngIf="grpChat">
+      <div *ngFor="let user of grpChat">
+        <!-- <form class="example-form"> -->
+        <mat-form-field class="example-full-width" appearance="fill">
+          <mat-label>{{ user.username }}</mat-label>
+          <p>
+            <small>{{ user.time }}</small>
+          </p>
+          <div>
+            <b> {{ user.msg }}</b>
+          </div>
+          <input matInput value="{{ user.msg }}" hidden />
+        </mat-form-field>
+        <!-- </form> -->
+      </div>
+    </div>
+    <form
+      class="example-form"
+      [formGroup]="groupChat"
+      (ngSubmit)="onSubmit()"
+      novalidate
+    >
+      <mat-card-content>
+        <mat-form-field class="example-full-width">
+          <textarea
+            matInput
+            type="text"
+            placeholder="Enter your message"
+            formControlName="msg"
+          >
+          </textarea>
+        </mat-form-field>
+      </mat-card-content>
+      <!-- <button type="submit" [disabled]="!profileLogin.valid">Submit</button> -->
+      <button
+        mat-stroked-button
+        color="mat-button"
+        type="submit"
+        [disabled]="!groupChat.valid"
+        class="btn-block"
+      >
+        Send
+      </button>
+    </form>
+  </mat-card>
+</div>
